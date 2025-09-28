@@ -13,6 +13,7 @@ using std::cin;
 using std::endl;
 
 class Studentas {
+    int a
     string vardas;
     string pavarde;
     vector<int>paz;
