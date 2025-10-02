@@ -1,0 +1,15 @@
+Jonas Petrauskas 3 5 7 9 2 0 8
+Mantas Kavaliauskas 4 6 1 3 7 0 5
+Tomas Jankauskas 2 8 4 6 9 0 3
+Darius Vaitkus 5 7 3 2 8 0 6
+Rokas Žukauskas 1 4 6 7 2 0 9
+Lukas Stankevičius 9 3 5 8 6 0 4
+Paulius Balsys 7 2 9 4 5 0 1
+Vytautas Šimkus 8 6 3 7 1 0 2
+Andrius Markevičius 6 5 2 9 8 0 7
+Martynas Bieliauskas 3 7 8 2 4 0 9
+Mindaugas Žalys 4 1 9 6 5 0 7
+Giedrius Jasiūnas 2 9 7 3 8 0 4
+Raimondas Pocius 5 8 4 7 6 0 2
+Edgaras Rimkus 6 2 3 5 9 0 1
+Algirdas Grigonis 7 4 8 2 1 0 6
