@@ -171,7 +171,7 @@ void GeneruotiFaila(int kiekis, int nd_kiek) {
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end - start;
 
-    std::cout << "✓ Sukurtas: " << pavadinimas 
+    std::cout << " Sukurtas: " << pavadinimas 
               << " (laikas: " << std::fixed << std::setprecision(3) 
               << diff.count() << " s)\n";
 }
