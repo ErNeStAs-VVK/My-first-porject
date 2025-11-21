@@ -6,7 +6,7 @@
 #include <chrono>
 #include <stdexcept>
 
-// Чтение из файла в произвольный контейнер
+
 template<typename Container>
 Container SkaitytiIsFailoContainer(const std::string& path) {
     std::ifstream in(path);
@@ -37,7 +37,7 @@ Container SkaitytiIsFailoContainer(const std::string& path) {
     return grupe;
 }
 
-// Запись контейнера в файл
+
 template<typename Container>
 void RasytiIFaila(const std::string& filename, const Container& konteineris) {
     std::ofstream out(filename);
@@ -53,8 +53,7 @@ void RasytiIFaila(const std::string& filename, const Container& konteineris) {
     }
 }
 
-// СТРАТЕГИЯ 1: Копирование студентов в два новых файла
-// Исходный файл остается без изменений
+
 template<typename Container>
 void PadalintiStudentusStrategija1(const std::string& ivestiesFailas, const std::string& containerName) {
     using namespace std::chrono;
@@ -63,7 +62,7 @@ void PadalintiStudentusStrategija1(const std::string& ivestiesFailas, const std:
     std::cout << "Failas: " << ivestiesFailas << "\n";
     std::cout << "Aprašymas: Kopijuojami studentai į 2 naujus failus\n";
 
-    // 1. Чтение
+    
     auto t1 = high_resolution_clock::now();
     Container visi;
     try {
@@ -79,7 +78,7 @@ void PadalintiStudentusStrategija1(const std::string& ivestiesFailas, const std:
         return;
     }
 
-    // 2. Разделение (копирование в два контейнера)
+   
     auto t3 = high_resolution_clock::now();
     
     Container kietiakiai;
@@ -95,7 +94,7 @@ void PadalintiStudentusStrategija1(const std::string& ivestiesFailas, const std:
     
     auto t4 = high_resolution_clock::now();
 
-    // 3. Запись в файлы
+   
     auto t5 = high_resolution_clock::now();
     
     size_t dotPos = ivestiesFailas.find_last_of('.');
@@ -111,7 +110,7 @@ void PadalintiStudentusStrategija1(const std::string& ivestiesFailas, const std:
     
     auto t6 = high_resolution_clock::now();
 
-    // Вывод результатов
+  
     duration<double> skaitymoLaikas = t2 - t1;
     duration<double> rusiavimoLaikas = t4 - t3;
     duration<double> rasymoLaikas = t6 - t5;
@@ -129,8 +128,7 @@ void PadalintiStudentusStrategija1(const std::string& ivestiesFailas, const std:
     std::cout << "  Vargšiukai failas:  " << vargFail << " (" << vargsiukai.size() << " studentų)\n\n";
 }
 
-// СТРАТЕГИЯ 2: Перенос vargšiukų с удалением из исходного
-// ВАЖНО: Исходный файл будет перезаписан (останутся только kietiakiai)
+
 template<typename Container>
 void PadalintiStudentusStrategija2(const std::string& ivestiesFailas, const std::string& containerName) {
     using namespace std::chrono;
@@ -139,9 +137,9 @@ void PadalintiStudentusStrategija2(const std::string& ivestiesFailas, const std:
     std::cout << "Failas: " << ivestiesFailas << "\n";
     std::cout << "Aprašymas: Vargšiukai perkeliami į atskirą failą ir ištrinami iš pagrindinio\n";
 
-    // 1. Чтение
+ 
     auto t1 = high_resolution_clock::now();
-    Container kietiakiai; // Сразу будем хранить здесь
+    Container kietiakiai; 
     try {
         kietiakiai = SkaitytiIsFailoContainer<Container>(ivestiesFailas);
     } catch (const std::exception& e) {
@@ -157,7 +155,7 @@ void PadalintiStudentusStrategija2(const std::string& ivestiesFailas, const std:
 
     size_t pradineKiekis = kietiakiai.size();
 
-    // 2. Разделение с удалением
+   
     auto t3 = high_resolution_clock::now();
     
     Container vargsiukai;
@@ -175,7 +173,7 @@ void PadalintiStudentusStrategija2(const std::string& ivestiesFailas, const std:
     
     auto t4 = high_resolution_clock::now();
 
-    // 3. Запись в файлы
+   
     auto t5 = high_resolution_clock::now();
     
     size_t dotPos = ivestiesFailas.find_last_of('.');
@@ -185,15 +183,15 @@ void PadalintiStudentusStrategija2(const std::string& ivestiesFailas, const std:
 
     std::string vargFail = base + "_vargsiukai.txt";
 
-    // ВАЖНО: Перезаписываем исходный файл (только с kietiakiai)
+ 
     RasytiIFaila(ivestiesFailas, kietiakiai);
     
-    // Создаем файл с vargšiukai
+ 
     RasytiIFaila(vargFail, vargsiukai);
     
     auto t6 = high_resolution_clock::now();
 
-    // Вывод результатов
+   
     duration<double> skaitymoLaikas = t2 - t1;
     duration<double> rusiavimoLaikas = t4 - t3;
     duration<double> rasymoLaikas = t6 - t5;
