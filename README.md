@@ -48,6 +48,7 @@ Pasirinkite strategiją:
 1 - Strategija 1: Kopijuoti į 2 naujus failus (kietiakiai + vargšiukai)
 2 - Strategija 2: Perkelti vargšiukus ir ištrinti iš pagrindinio
 Pasirinkimas: 
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Strategijų palyginimas
@@ -191,6 +192,28 @@ Aprašymas: Kopijuojami studentai į 2 naujus failus
  10,000,000    vector              ~50s                ~600s
  10,000,000      list              ~60s                ~50s
  10,000,000     deque              ~50                 ~200s
+
+
+
+
+ |      Dydis | Konteineris | Strategija 1 | Strategija 2 |
+| ---------: | ----------- | ------------ | ------------ |
+|      1,000 | vector      | ~0.005s ⚡    | ~0.005s ⚡    |
+|      1,000 | list        | ~0.006s ⚡    | ~0.005s ⚡    |
+|      1,000 | deque       | ~0.005s ⚡    | ~0.005s ⚡    |
+|     10,000 | vector      | ~0.05s ⚡     | ~0.1s ⚠️     |
+|     10,000 | list        | ~0.06s ⚡     | ~0.05s ⚡     |
+|     10,000 | deque       | ~0.05s ⚡     | ~0.07s ⚡     |
+|    100,000 | vector      | ~0.5s ⚡      | ~2s 🐢       |
+|    100,000 | list        | ~0.6s ⚡      | ~0.5s ⚡      |
+|    100,000 | deque       | ~0.5s ⚡      | ~1s ⚠️       |
+|  1,000,000 | vector      | ~5s ⚡        | ~60s 🐌      |
+|  1,000,000 | list        | ~6s ⚡        | ~5s ⚡        |
+|  1,000,000 | deque       | ~5s ⚡        | ~20s 🐢      |
+| 10,000,000 | vector      | ~50s ⚡       | ~600s 🐢🐢🐢 |
+| 10,000,000 | list        | ~60s ⚡       | ~50s ⚡       |
+| 10,000,000 | deque       | ~50s ⚡       | ~200s 🐢🐢   |
+
 
 
 
