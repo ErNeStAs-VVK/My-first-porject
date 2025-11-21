@@ -2,6 +2,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <list>
+#include <deque>
+#include <algorithm>
 
 class Studentas {
     std::string vardas;
@@ -14,9 +17,12 @@ public:
     Studentas() = default;
     Studentas(const Studentas&) = default;
     Studentas& operator=(const Studentas&) = default;
+    Studentas(Studentas&&) = default;
+    Studentas& operator=(Studentas&&) = default;
     ~Studentas() = default;
 
     Studentas(std::string A, std::string B, std::vector<int> C, int D);
+
     void skaiciuoti(bool pagalMediana); 
     void rez(); 
 
@@ -32,8 +38,26 @@ public:
 
 double vidurkis(const std::vector<int>& v);
 double mediana(std::vector<int> v);
+
 std::vector<Studentas> SkaitytiIsFailo(const std::string& path);
 std::vector<Studentas> SugeneruotiStudentus(int N, int nd_kiek);
 
 void GeneruotiFaila(int kiekis, int nd_kiek);
-void PadalintiStudentus(const std::string& ivestiesFailas);
+
+ 
+template<typename Container>
+Container SkaitytiIsFailoContainer(const std::string& path);
+
+ 
+template<typename Container>
+void PadalintiStudentusStrategija1(const std::string& ivestiesFailas, const std::string& containerName);
+
+ 
+template<typename Container>
+void PadalintiStudentusStrategija2(const std::string& ivestiesFailas, const std::string& containerName);
+
+ template<typename Container>
+void RasytiIFaila(const std::string& filename, const Container& konteineris);
+
+ 
+#include "MyLib.tpp"
