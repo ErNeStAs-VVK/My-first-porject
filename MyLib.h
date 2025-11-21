@@ -3,7 +3,6 @@
 #include <string>
 #include <vector>
 
-
 class Studentas {
     std::string vardas;
     std::string pavarde;
@@ -12,23 +11,18 @@ class Studentas {
     double rezultatas = 0.0;
 
 public:
-
     Studentas() = default;
     Studentas(const Studentas&) = default;
     Studentas& operator=(const Studentas&) = default;
     ~Studentas() = default;
 
     Studentas(std::string A, std::string B, std::vector<int> C, int D);
-
-
     void skaiciuoti(bool pagalMediana); 
     void rez(); 
-
 
     friend std::ostream& operator<<(std::ostream& os, const Studentas& obj);
     friend std::istream& operator>>(std::istream& is, Studentas& obj);
 
-    // Getteriai
     const std::string& Vardas()   const { return vardas; }
     const std::string& Pavarde()  const { return pavarde; }
     const std::vector<int>& Paz() const { return paz; }
@@ -36,12 +30,11 @@ public:
     double Galutinis() const { return rezultatas; }
 };
 
-
 double vidurkis(const std::vector<int>& v);
 double mediana(std::vector<int> v);
-
-
 std::vector<Studentas> SkaitytiIsFailo(const std::string& path);
-
-
 std::vector<Studentas> SugeneruotiStudentus(int N, int nd_kiek);
+
+// НОВЫЕ ФУНКЦИИ для v0.2
+void GeneruotiFaila(int kiekis, int nd_kiek);
+void PadalintiStudentus(const std::string& ivestiesFailas);
