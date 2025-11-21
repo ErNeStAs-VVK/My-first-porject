@@ -28,7 +28,7 @@ Pasirinkite režimą:
 4 - Generuoti failus ir testuoti strategijas (v1.0)
 Jūsų pasirinkimas: 
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1 žingsnis: Pasirinkti konteinerį
 Pasirinkite konteinerį:
 1 - vector
@@ -36,30 +36,32 @@ Pasirinkite konteinerį:
 3 - deque
 Pasirinkimas: 
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 2 žingsnis: Nurodyti dydį
 Kiek studentų generuoti? 1000
 Kiek ND kiekvienam? 
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 3 žingsnis: Pasirinkti strategiją
 Pasirinkite strategiją:
 1 - Strategija 1: Kopijuoti į 2 naujus failus (kietiakiai + vargšiukai)
 2 - Strategija 2: Perkelti vargšiukus ir ištrinti iš pagrindinio
 Pasirinkimas: 
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Strategijų palyginimas
 Strategija 1: Kopijavimas į 2 naujus failus
 Kaip veikia:
 
-Nuskaito students1000.txt
-Sukuria 2 naujus failus:
+   Nuskaito students1000.txt
+   Sukuria 2 naujus failus:
 
-students1000_kietiakiai.txt (galutinis ≥ 5.0)
-students1000_vargsiukai.txt (galutinis < 5.0)
-
+- students1000_kietiakiai.txt (galutinis ≥ 5.0)
+- students1000_vargsiukai.txt (galutinis < 5.0)
 
 Pagrindinis failas lieka nepakeistas
+
 
 Rezultatas:
 students1000.txt              (1000 studentų) ← nepakeistas
@@ -67,14 +69,15 @@ students1000_kietiakiai.txt   (503 studentai)
 students1000_vargsiukai.txt   (497 studentai)
 Privalumai:
 
-✅ Saugus (originalas išsaugotas)
-✅ Aiškus rezultatas (3 failai)
+ Saugus (originalas išsaugotas)
+ Aiškus rezultatas (3 failai)
 
 Trūkumai:
 
-❌ Dvigubas atminties naudojimas
-❌ Daugiau disko vietos
-
+ Dvigubas atminties naudojimas
+ Daugiau disko vietos
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Strategija 2: Perkėlimas su ištrinimu
 Kaip veikia:
@@ -95,7 +98,8 @@ Privalumai:
 Trūkumai:
  Originalas prarandamas
  erase() gali būti lėtas (ypač vector)
-
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 VECTOR:
 Pavyzdžio išvestis
 Strategija 1 (vector, 1000 studentų):
@@ -113,7 +117,7 @@ Aprašymas: Kopijuojami studentai į 2 naujus failus
   Pradinis failas:    students1000.txt (1000 studentų)
   Kietiakiai failas:  students1000_kietiakiai.txt (503 studentų)
   Vargšiukai failas:  students1000_vargsiukai.txt (497 studentų)
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 LIST:
 Strategija 2 (list, 1000 studentų):
@@ -132,6 +136,7 @@ Aprašymas: Vargšiukai perkeliami į atskirą failą ir ištrinami iš pagrindi
   Vargšiukai failas:  students1000_vargsiukai.txt (497 studentų)
   Iš viso buvo:       1000 studentų
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 DEQUE:
   === STRATEGIJA 1 (deque) ===
@@ -148,25 +153,45 @@ Aprašymas: Kopijuojami studentai į 2 naujus failus
   Pradinis failas:    students1000.txt (1000 studentų)
   Kietiakiai failas:  students1000_kietiakiai.txt (609 studentų)
   Vargšiukai failas:  students1000_vargsiukai.txt (391 studentų)
+  
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+ Dydis                   Konteineris               Strategija 1              Strategija 2
+ 1,000                     vector                    ~0.005s                 ~0.005s 
+ 1,000                       list                    ~0.006s                 ~0.005s
+ 1,000                      deque                    ~0.005s                 ~0.005s 
+ 10,000                     vector                   ~0.05s                  ~0.1s 
+ 10,000                       list                   ~0.06s                  ~0.05s 
+ 10,000                      deque                   ~0.05s                  ~0.07s 
+ 100,000                    vector                   ~0.5s                   ~2s 
+ 100,000                    list                     ~0.6s                   ~0.5s
+ 100,000                    deque                    ~0.5s                   ~1s 
+ 1,000,000                  vector                   ~5s                     ~60s 
+ 1,000,000                   list                    ~6s                     ~5s 
+ 1,000,000                  deque                    ~5s                     ~20s 
+ 10,000,000                 vector                   ~50s                    ~600s
+ 10,000,000                  list                    ~60s                    ~50s 
+ 10,000,000                  deque                   ~50                     ~200s
 
-Dydis        Konteineris        Strategija 1        Strategija 2
-1,000          vector             ~0.005s             ~0.005s 
-1,000            list             ~0.006s             ~0.005s
-1,000           deque             ~0.005s             ~0.005s 
-10,000          vector            ~0.05s              ~0.1s 
-10,000          list              ~0.06s              ~0.05s 
-10,000          deque             ~0.05s              ~0.07s 
-100,000         vector            ~0.5s               ~2s 
-100,000          list             ~0.6s               ~0.5s
-100,000         deque             ~0.5s               ~1s 
-1,000,000      vector              ~5s                ~60s 
-1,000,000       list               ~6s                ~5s 
-1,000,000      deque               ~5s                ~20s 
-10,000,000    vector              ~50s                ~600s
-10,000,000      list              ~60s                ~50s
-10,000,000     deque              ~50                 ~200s
+
+  Dydis           Konteineris        Strategija 1        Strategija 2
+ 1,000           vector             ~0.005s             ~0.005s 
+ 1,000            list             ~0.006s             ~0.005s
+ 1,000           deque             ~0.005s             ~0.005s 
+ 10,000          vector            ~0.05s              ~0.1s 
+ 10,000          list              ~0.06s              ~0.05s 
+ 10,000          deque             ~0.05s              ~0.07s 
+ 100,000         vector            ~0.5s               ~2s 
+ 100,000          list             ~0.6s               ~0.5s
+ 100,000         deque             ~0.5s               ~1s 
+ 1,000,000      vector              ~5s                ~60s 
+ 1,000,000       list               ~6s                ~5s 
+ 1,000,000      deque               ~5s                ~20s 
+ 10,000,000    vector              ~50s                ~600s
+ 10,000,000      list              ~60s                ~50s
+ 10,000,000     deque              ~50                 ~200s
+
 
 
 
