@@ -35,6 +35,5 @@ double mediana(std::vector<int> v);
 std::vector<Studentas> SkaitytiIsFailo(const std::string& path);
 std::vector<Studentas> SugeneruotiStudentus(int N, int nd_kiek);
 
-// НОВЫЕ ФУНКЦИИ для v0.2
 void GeneruotiFaila(int kiekis, int nd_kiek);
 void PadalintiStudentus(const std::string& ivestiesFailas);
