@@ -4,7 +4,6 @@
 #include <algorithm>
 #include <iomanip>
 
-
 static void SpausdintiAntraste(bool pagalMediana) {
     std::cout << std::left
               << std::setw(18) << "Pavarde"
@@ -13,7 +12,6 @@ static void SpausdintiAntraste(bool pagalMediana) {
               << "\n---------------------------------------------------------------\n";
 }
 
-
 static void AtnaujintiGalutinius(std::vector<Studentas>& grupe, bool pagalMediana) {
     for (auto& s : grupe) s.skaiciuoti(pagalMediana);
 }
@@ -21,13 +19,14 @@ static void AtnaujintiGalutinius(std::vector<Studentas>& grupe, bool pagalMedian
 int main() {
     try {
         std::vector<Studentas> grupe;
-
+        
         std::cout << "Pasirinkite ivedimo buda:\n"
                   << "1 - Ivesti ranka (per klaviatura)\n"
                   << "2 - Sugeneruoti atsitiktinai\n"
                   << "3 - Nuskaityti is failo (kursiokai.txt)\n"
+                  << "4 - Sugeneruoti didelius studentu failus (v0.2)\n"
                   << "Jusu pasirinkimas: ";
-
+        
         int mode = 0; 
         if (!(std::cin >> mode)) return 1;
 
@@ -36,11 +35,13 @@ int main() {
             std::cout << "Kiek studentu norite ivesti? ";
             std::cin >> kiek;
             grupe.reserve(std::max(0, kiek));
+            
             for (int i = 0; i < kiek; ++i) {
                 Studentas s;
                 std::cin >> s; 
                 grupe.push_back(std::move(s));
             }
+            
         } else if (mode == 2) {
             int N, nd_kiek;
             std::cout << "Kiek studentu generuoti? ";
@@ -48,11 +49,29 @@ int main() {
             std::cout << "Kiek namu darbu (ND) kiekvienam? ";
             std::cin >> nd_kiek;
             grupe = SugeneruotiStudentus(N, nd_kiek);
+            
         } else if (mode == 3) {
             grupe = SkaitytiIsFailo("kursiokai.txt");
-        } else {
-            std::cerr << "Nezinomas pasirinkimas.\n";
-            return 1;
+            
+        } else if (mode == 4) {
+            std::cout << " Spauskite '1' kad sugeneruoti viena faila ir padalinti\n";
+            
+            int subMode = 1;
+            std::cin >> subMode;
+            
+
+                int kiekis, nd_kiek;
+                std::cout << "Kiek studentu generuoti faile? ";
+                std::cin >> kiekis;
+                std::cout << "Kiek ND generuoti kiekvienam studentui? ";
+                std::cin >> nd_kiek;
+                
+                GeneruotiFaila(kiekis, nd_kiek);
+                
+                std::string failoPav = "students" + std::to_string(kiekis) + ".txt";
+                PadalintiStudentus(failoPav);
+
+            return 0;
         }
 
         if (grupe.empty()) {
@@ -60,15 +79,12 @@ int main() {
             return 0;
         }
 
-
         std::cout << "Skaiciuoti pagal (1) Vidurki ar (2) Mediana? ";
         int m = 1; 
         std::cin >> m;
         bool pagalMediana = (m == 2);
 
-
         AtnaujintiGalutinius(grupe, pagalMediana);
-
 
         std::sort(grupe.begin(), grupe.end(),
                   [](const Studentas& a, const Studentas& b) {
@@ -76,15 +92,15 @@ int main() {
                       return a.Pavarde() < b.Pavarde();
                   });
 
-
         SpausdintiAntraste(pagalMediana);
         for (const auto& s : grupe) {
             std::cout << s << "\n"; 
         }
-
+        
     } catch (const std::exception& e) {
         std::cerr << "Klaida: " << e.what() << "\n";
         return 1;
     }
+    
     return 0;
 }
