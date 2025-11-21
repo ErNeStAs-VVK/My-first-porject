@@ -32,26 +32,31 @@ Jūsų pasirinkimas:
 
 1 žingsnis: Pasirinkti konteinerį
 Pasirinkite konteinerį:
+Pasirinkimas:
 <pre>
 1 - vector
 2 - list
 3 - deque
 </pre>
-Pasirinkimas: 
+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 2 žingsnis: Nurodyti dydį
+<pre>
 Kiek studentų generuoti? 1000
 Kiek ND kiekvienam? 
+</pre>
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 3 žingsnis: Pasirinkti strategiją
+<pre>
 Pasirinkite strategiją:
 1 - Strategija 1: Kopijuoti į 2 naujus failus (kietiakiai + vargšiukai)
 2 - Strategija 2: Perkelti vargšiukus ir ištrinti iš pagrindinio
 Pasirinkimas: 
+</pre>
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -59,19 +64,25 @@ Strategijų palyginimas
 Strategija 1: Kopijavimas į 2 naujus failus
 Kaip veikia:
 
+<pre>
    Nuskaito students1000.txt
    Sukuria 2 naujus failus:
+</pre>
 
+<pre>
 - students1000_kietiakiai.txt (galutinis ≥ 5.0)
 - students1000_vargsiukai.txt (galutinis < 5.0)
+</pre>
 
 Pagrindinis failas lieka nepakeistas
 
 
+<pre>
 Rezultatas:
 students1000.txt              (1000 studentų) ← nepakeistas
 students1000_kietiakiai.txt   (503 studentai)
 students1000_vargsiukai.txt   (497 studentai)
+</pre>
 Privalumai:
 
  Saugus (originalas išsaugotas)
@@ -87,14 +98,17 @@ Trūkumai:
 Strategija 2: Perkėlimas su ištrinimu
 Kaip veikia:
 
+<pre>
 Nuskaito students1000.txt
 Perkelia vargšiukus į students1000_vargsiukai.txt
 Perrašo pagrindinį failą (lieka tik kietiakiai)
+</pre>
 
+<pre>
 Rezultatas:
 students1000.txt              (503 studentai) ← PERRAŠYTAS! tik kietiakiai
 students1000_vargsiukai.txt   (497 studentai)
-Privalumai:
+</pre>
 
 Privalumai:
  Efektyvesnis atminties naudojimas
@@ -113,16 +127,20 @@ Strategija 1 (vector, 1000 studentų):
 Failas: students1000.txt
 Aprašymas: Kopijuojami studentai į 2 naujus failus
 
+<pre>
 --- Rezultatai ---
   Nuskaitymas:     0.0023 s
   Rusiavimas:      0.0015 s
   Rasymas:         0.0018 s
   BENDRAS LAIKAS:  0.0056 s
+</pre>
 
+<pre>
 --- Sukurti failai ---
   Pradinis failas:    students1000.txt (1000 studentų)
   Kietiakiai failas:  students1000_kietiakiai.txt (503 studentų)
   Vargšiukai failas:  students1000_vargsiukai.txt (497 studentų)
+</pre>
   
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -132,16 +150,20 @@ Strategija 2 (list, 1000 studentų):
 Failas: students1000.txt
 Aprašymas: Vargšiukai perkeliami į atskirą failą ir ištrinami iš pagrindinio
 
+<pre>
 --- Rezultatai ---
   Nuskaitymas:     0.0025 s
   Rusiavimas:      0.0008 s
   Rasymas:         0.0019 s
   BENDRAS LAIKAS:  0.0052 s
+</pre>
 
+<pre>
 --- Failai po padalinimo ---
   Pradinis failas:    students1000.txt (503 studentų - tik kietiakiai) 
   Vargšiukai failas:  students1000_vargsiukai.txt (497 studentų)
   Iš viso buvo:       1000 studentų
+</pre>
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -150,16 +172,21 @@ DEQUE:
 Failas: students1000.txt
 Aprašymas: Kopijuojami studentai į 2 naujus failus
 
+<pre>
 --- Rezultatai ---
   Nuskaitymas:     0.0036 s
   Rusiavimas:      0.0002 s
   Rasymas:         0.0006 s
   BENDRAS LAIKAS:  0.0044 s
+</pre>
 
+
+<pre>
 --- Sukurti failai ---
   Pradinis failas:    students1000.txt (1000 studentų)
   Kietiakiai failas:  students1000_kietiakiai.txt (609 studentų)
   Vargšiukai failas:  students1000_vargsiukai.txt (391 studentų)
+</pre>
   
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
