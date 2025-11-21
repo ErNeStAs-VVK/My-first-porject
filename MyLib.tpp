@@ -15,7 +15,7 @@ Container SkaitytiIsFailoContainer(const std::string& path) {
     Container grupe;
     std::string line;
 
-    std::getline(in, line); // Пропускаем заголовок
+    std::getline(in, line);
 
     while (std::getline(in, line)) {
         if (line.empty()) continue;
@@ -160,12 +160,12 @@ void PadalintiStudentusStrategija2(const std::string& ivestiesFailas, const std:
     
     Container vargsiukai;
     
-    // Используем итераторы для удаления
+   
     auto it = kietiakiai.begin();
     while (it != kietiakiai.end()) {
         if (it->Galutinis() < 5.0) {
             vargsiukai.push_back(*it);
-            it = kietiakiai.erase(it); // erase возвращает следующий итератор
+            it = kietiakiai.erase(it); 
         } else {
             ++it;
         }
