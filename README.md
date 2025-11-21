@@ -16,7 +16,7 @@ Linux/Mac:
 2)      clang++ -std=c++17 main.cpp MyLib.cpp -o main
 
   Windows:
-  g++ -std=c++17 -O2 -Wall main.cpp MyLib.cpp -o programa.exe
+ 1)     g++ -std=c++17 -O2 -Wall main.cpp MyLib.cpp -o programa.exe
 
 
 Naudojimas
