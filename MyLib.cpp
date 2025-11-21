@@ -1,4 +1,4 @@
-#include <fstream> //
+#include <fstream> 
 #include "MyLib.h"
 #include <fstream>
 #include <sstream>
@@ -113,8 +113,6 @@ std::vector<Studentas> SkaitytiIsFailo(const std::string& path) {
     return grupe;
 }
 
-
-
 std::vector<Studentas> SugeneruotiStudentus(int N, int nd_kiek) {
     if (N <= 0 || nd_kiek <= 0) throw std::invalid_argument("N ir nd_kiek turi būti > 0");
 
@@ -139,8 +137,6 @@ std::vector<Studentas> SugeneruotiStudentus(int N, int nd_kiek) {
     return grupe;
 }
 
-//
-// Улучшенная функция генерации с таймером
 void GeneruotiFaila(int kiekis, int nd_kiek) {
     if (kiekis <= 0 || nd_kiek <= 0) {
         std::cerr << "Kiekis ir ND kiek turi buti > 0\n";
@@ -160,14 +156,12 @@ void GeneruotiFaila(int kiekis, int nd_kiek) {
         return;
     }
 
-    // Заголовок
     out << "Pavarde Vardas";
     for (int j = 1; j <= nd_kiek; ++j) {
         out << " ND" << j;
     }
     out << " Egz\n";
 
-    // Генерация студентов
     for (int i = 1; i <= kiekis; ++i) {
         out << "Pavarde" << i << " Vardas" << i;
 
@@ -188,13 +182,11 @@ void GeneruotiFaila(int kiekis, int nd_kiek) {
 }
 
 
-// Функция разделения с детальным измерением времени
 void PadalintiStudentus(const std::string& ivestiesFailas) {
     using namespace std::chrono;
     
     std::cout << "\n--- Padalinimas: " << ivestiesFailas << " ---\n";
 
-    // 1. Чтение файла
     auto t1 = high_resolution_clock::now();
     
     std::vector<Studentas> visi;
@@ -213,7 +205,6 @@ void PadalintiStudentus(const std::string& ivestiesFailas) {
         return;
     }
 
-    // 2. Разделение студентов
     auto t3 = high_resolution_clock::now();
 
     std::vector<Studentas> kietiakiai;
@@ -233,10 +224,8 @@ void PadalintiStudentus(const std::string& ivestiesFailas) {
     auto t4 = high_resolution_clock::now();
     duration<double> rusiavimoLaikas = t4 - t3;
 
-    // 3. Запись в файлы
     auto t5 = high_resolution_clock::now();
 
-    // Создаем имена файлов
     size_t dotPos = ivestiesFailas.find_last_of('.');
     std::string base = (dotPos != std::string::npos) 
                        ? ivestiesFailas.substr(0, dotPos) 
@@ -245,7 +234,6 @@ void PadalintiStudentus(const std::string& ivestiesFailas) {
     std::string kietiFail = base + "_kietiakiai.txt";
     std::string vargFail = base + "_vargsiukai.txt";
 
-    // Записываем kietiakiai
     std::ofstream outKieti(kietiFail);
     if (outKieti) {
         outKieti << std::left << std::setw(18) << "Pavarde" 
@@ -259,7 +247,6 @@ void PadalintiStudentus(const std::string& ivestiesFailas) {
         outKieti.close();
     }
 
-    // Записываем vargsiukai
     std::ofstream outVarg(vargFail);
     if (outVarg) {
         outVarg << std::left << std::setw(18) << "Pavarde" 
@@ -277,7 +264,6 @@ void PadalintiStudentus(const std::string& ivestiesFailas) {
     duration<double> rasymoLaikas = t6 - t5;
     duration<double> bendrasLaikas = t6 - t1;
 
-    // Выводим статистику
     std::cout << std::fixed << std::setprecision(4);
     std::cout << "  Nuskaitymas:     " << skaitymoLaikas.count() << " s\n";
     std::cout << "  Rusiavimas:      " << rusiavimoLaikas.count() << " s\n";
