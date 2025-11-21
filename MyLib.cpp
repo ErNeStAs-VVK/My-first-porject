@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <stdexcept>
 #include <random>
+#include <chrono>
 
 
 
@@ -15,7 +16,6 @@ Studentas::Studentas(std::string A, std::string B, std::vector<int> C, int D)
 }
 
 void Studentas::rez() {
-
     if (!paz.empty()) {
         double sum = std::accumulate(paz.begin(), paz.end(), 0.0);
         double hw  = sum / paz.size();
@@ -56,13 +56,11 @@ std::istream& operator>>(std::istream& is, Studentas& obj) {
     std::cout << "Iveskite egzamino bala: ";
     is >> obj.egzaminas;
 
-
     obj.rez();
 
     std::cout << std::endl; 
     return is;
 }
-
 
 
 double vidurkis(const std::vector<int>& v) {
@@ -80,7 +78,6 @@ double mediana(std::vector<int> v) {
 }
 
 
-
 std::vector<Studentas> SkaitytiIsFailo(const std::string& path) {
     std::ifstream in(path);
     if (!in) throw std::runtime_error("Nepavyko atidaryti failo: " + path);
@@ -88,8 +85,7 @@ std::vector<Studentas> SkaitytiIsFailo(const std::string& path) {
     std::vector<Studentas> grupe;
     std::string line;
 
-
-    std::getline(in, line);
+    std::getline(in, line); 
 
     while (std::getline(in, line)) {
         if (line.empty()) continue;
@@ -112,9 +108,9 @@ std::vector<Studentas> SkaitytiIsFailo(const std::string& path) {
 }
 
 
-
 std::vector<Studentas> SugeneruotiStudentus(int N, int nd_kiek) {
-    if (N <= 0 || nd_kiek <= 0) throw std::invalid_argument("N ir nd_kiek turi būti > 0");
+    if (N <= 0 || nd_kiek <= 0) 
+        throw std::invalid_argument("N ir nd_kiek turi būti > 0");
 
     std::mt19937 rng(std::random_device{}());
     std::uniform_int_distribution<int> d(1, 10);
@@ -130,9 +126,52 @@ std::vector<Studentas> SugeneruotiStudentus(int N, int nd_kiek) {
         std::string v = "Vardas" + std::to_string(i);
         std::string p = "Pavarde" + std::to_string(i);
 
-        Studentas s(v, p, std::move(nd), egz);
-
-        grupe.emplace_back(std::move(s));
+        grupe.emplace_back(v, p, std::move(nd), egz);
     }
     return grupe;
+}
+
+
+void GeneruotiFaila(int kiekis, int nd_kiek) {
+    if (kiekis <= 0 || nd_kiek <= 0) {
+        std::cerr << "Kiekis ir ND kiek turi būti > 0\n";
+        return;
+    }
+
+    auto start = std::chrono::high_resolution_clock::now();
+
+    std::mt19937 rng(std::random_device{}());
+    std::uniform_int_distribution<int> d(1, 10);
+
+    std::string pavadinimas = "students" + std::to_string(kiekis) + ".txt";
+    std::ofstream out(pavadinimas);
+
+    if (!out) {
+        std::cerr << "Nepavyko sukurti failo: " << pavadinimas << "\n";
+        return;
+    }
+
+    out << "Pavarde Vardas";
+    for (int j = 1; j <= nd_kiek; ++j) {
+        out << " ND" << j;
+    }
+    out << " Egz\n";
+
+    for (int i = 1; i <= kiekis; ++i) {
+        out << "Pavarde" << i << " Vardas" << i;
+
+        for (int j = 0; j < nd_kiek; ++j)
+            out << " " << d(rng);
+
+        out << " " << d(rng) << "\n";
+    }
+
+    out.close();
+
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff = end - start;
+
+    std::cout << " Sukurtas: " << pavadinimas 
+              << " (laikas: " << std::fixed << std::setprecision(3) 
+              << diff.count() << " s)\n";
 }
